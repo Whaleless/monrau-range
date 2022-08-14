@@ -1,0 +1,169 @@
+:root {
+    --song-size: 24px;
+    --coord-top: 0;
+    --coord-bottom: 0;
+    --coord-left: 0;
+    --coord-right: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 3s;
+}
+
+.oldBack {
+    background: #3d3939;
+}
+
+.newBack {
+    background: #d0d0d0;
+}
+
+.hidden {
+    display: none;
+}
+
+.logo {
+    transition-duration: 3s;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.range {
+    width: 60%;
+    appearance: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    background: #D9D9D9;
+
+    border-radius: 50px;
+
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+
+    -webkit-appearance: none;
+
+    margin-top: -12px;
+
+    transition-duration: .2s;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    background: #a9a9a9;
+}
+
+input[type=range]::-webkit-slider-thumb:active {
+    background: #676767;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 2px;
+    background-color: #959595;
+}
+
+.titles {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.title {
+    display: inline;
+    position: absolute;
+    color: #d0d0d0;
+    font-family: 'Tenor Sans', sans-serif;
+    transition: opacity 1s;
+    font-size: var(--song-size);
+    top: var(--coord-top);
+    right: var(--coord-right);
+    margin: 0;
+}
+
+.appear {
+    opacity: 1;
+}
+
+.disappear {
+    opacity: 0;
+}
+
+.placeholder {
+    color: #3b3b3b;
+    font-size: 48px;
+    font-family: 'Tenor Sans', sans-serif;
+    transition-duration: 2s;
+    width: 75%;
+    text-align: center;
+}
+
+/*
+.song-1 {
+    top: 10%;
+    right: 25%;
+}
+
+.song-2 {
+    top: 30%;
+    right: 75%;
+}
+
+.song-3 {
+    top: 40%;
+    right: 70%;
+}
+
+.song-4 {
+    top: 20%;
+    right:25%;
+}
+
+.song-5 {
+    top: 80%;
+    right: 45%;
+}
+
+.song-6 {
+    top: 60%;
+    right: 15%;
+}
+
+.song-7 {
+    top: 90%;
+    right: 35%;
+}
+
+.song-8 {
+    top: 35%;
+    right: 80%;
+}
+
+.song-9 {
+    top: 45%;
+    right: 40%;
+}
+
+.song-10 {
+    top: 30%;
+    right: 15%;
+}
+
+.song-11 {
+    top: 60%;
+    right: 25%;
+}
+*/
