@@ -73,7 +73,7 @@ range.addEventListener('input', async function() {
 
     if (range.value == 100) {
         let ms = 200;
-        for (i = 0; i < 800; i++) {
+        for (i = 0; i < 900; i++) {
             let paragraph = document.createElement('p');
             paragraph.className = 'mass title disappear';
             paragraph.innerHTML = songs[Math.floor(Math.random() * songs.length)].title;
@@ -83,10 +83,12 @@ range.addEventListener('input', async function() {
             massive.append(paragraph);
             await sleep(ms);
             paragraph.classList.remove('disappear');
+            if (i == 800) {
+                body.classList.replace('oldBack', 'newBack');
+                range.remove();
+            }
             if (ms != 10) ms = ms - 5;
         }
-        range.remove();
-        body.classList.replace('oldBack', 'newBack');
         body.addEventListener('transitionend', async function() {
             await sleep(3000);
             let masses = document.querySelectorAll('.title');
