@@ -17,6 +17,9 @@ html, body {
     justify-content: center;
     align-items: center;
     transition-duration: 3s;
+    position: fixed;
+    overflow-y: scroll;
+    width: 100%;
 }
 
 .oldBack {
