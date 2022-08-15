@@ -73,7 +73,7 @@ range.addEventListener('input', async function() {
 
     if (range.value == 100) {
         let ms = 200;
-        for (i = 0; i < 900; i++) {
+        for (i = 0; i < 850; i++) {
             let paragraph = document.createElement('p');
             paragraph.className = 'mass title disappear';
             paragraph.innerHTML = songs[Math.floor(Math.random() * songs.length)].title;
