@@ -118,16 +118,17 @@ input[type=range]::-webkit-slider-runnable-track {
     text-align: center;
 }
 
-@media (max-device-width: 680px) {
+@media (max-device-width: 1079px) {
     input[type=range]::-webkit-slider-thumb {
-        margin-top: -25px;
-        height: 50px;
-        width: 50px;
+        margin-top: -40px;
+        height: 80px;
+        width: 80px;
     }
 
 
     .range {
         position: absolute;
-        bottom: 25%;
+        bottom: 15%;
+        width: 80%
     }
 }
