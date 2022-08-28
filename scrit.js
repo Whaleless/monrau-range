@@ -1,4 +1,4 @@
-let songs = [
+const songs = [
     {id: 1, title: 'Ненависть'},
     {id: 2, title: 'Тишина'},
     {id: 3, title: 'Километры и дожди'},
@@ -12,20 +12,26 @@ let songs = [
     {id: 11, title: 'Молодым'}
 ];
 
-let sizes = [
+const sizes = [
     {id: 1, size: '24px'},
     {id: 2, size: '36px'},
     {id: 3, size: '48px'}
 ];
 
-let extraSizes = [
+const extraSizes = [
     {id: 1, extraSize: '24px'},
     {id: 2, extraSize: '36px'},
     {id: 3, extraSize: '48px'},
-    {id: 3, extraSize: '64px'},
-    {id: 3, extraSize: '72px'},
-    {id: 3, extraSize: '96px'}
+    {id: 4, extraSize: '64px'},
+    {id: 5, extraSize: '72px'},
+    {id: 6, extraSize: '96px'}
 ];
+
+const mobileSizes = [
+    {id: 1, mobileSize: '48px'},
+    {id: 2, mobileSize: '64px'},
+    {id: 3, mobileSize: '72px'}
+]
 
 let body = document.querySelector('.body');
 let range = document.querySelector('.range');
@@ -35,11 +41,7 @@ let logo = document.querySelector('.logo');
 let form = document.querySelector('.form');
 const placeholder = document.querySelector('.placeholder');
 
-console.log(titles);
-
-function randomCoordinates(title) {
-
-}
+console.log(window.innerWidth);
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -54,7 +56,12 @@ function showTitle(titleNumber) {
 
     if (!titles[titleNumber].classList.contains('appear')) {
         titles[titleNumber].innerHTML = songs[titleNumber].title;
-        titles[titleNumber].style.setProperty('--song-size' ,sizes[Math.floor(Math.random() * sizes.length)].size);
+        if(window.innerWidth >= 1080) {
+            titles[titleNumber].style.setProperty('--song-size' ,sizes[Math.floor(Math.random() * sizes.length)].size);
+        }
+        else {
+            titles[titleNumber].style.setProperty('--song-size' ,mobileSizes[Math.floor(Math.random() * mobileSizes.length)].mobileSize);
+        }
         titles[titleNumber].style.setProperty('--coord-top' ,`${(Math.floor(Math.random() * (18 - 1)) + 1) * 5}%`);
         titles[titleNumber].style.setProperty('--coord-right' ,`${(Math.floor(Math.random() * (16 - 1)) + 1) * 5}%`);
             titles[titleNumber].classList.replace('disappear', 'appear');
@@ -73,6 +80,11 @@ range.addEventListener('input', async function() {
 
     if (range.value == 100) {
         let ms = 200;
+        range.classList.add('disappear');
+        range.addEventListener('transitionend', ()=> {
+            range.remove();
+        })
+
         for (i = 0; i < 850; i++) {
             let paragraph = document.createElement('p');
             paragraph.className = 'mass title disappear';
@@ -85,10 +97,10 @@ range.addEventListener('input', async function() {
             paragraph.classList.remove('disappear');
             if (i == 800) {
                 body.classList.replace('oldBack', 'newBack');
-                range.remove();
             }
             if (ms != 10) ms = ms - 5;
         }
+
         body.addEventListener('transitionend', async function() {
             await sleep(3000);
             let masses = document.querySelectorAll('.title');
