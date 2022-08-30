@@ -33,13 +33,22 @@ const mobileSizes = [
     {id: 3, mobileSize: '72px'}
 ]
 
+const releaseDate = new Date('2022-09-30T21:00');
+
 let body = document.querySelector('.body');
 let range = document.querySelector('.range');
 let titles = document.querySelectorAll('.title');
 let massive = document.querySelector('.massive');
 let logo = document.querySelector('.logo');
 let form = document.querySelector('.form');
-const placeholder = document.querySelector('.placeholder');
+const timer = document.querySelector('.timer-box');
+const albumTitle = document.querySelector('.album-title');
+let timerDays = document.querySelector('.days');
+let timerHours = document.querySelector('.hours');
+let timerMinutes = document.querySelector('.minutes');
+let timerSeconds = document.querySelector('.seconds');
+
+
 
 console.log(window.innerWidth);
 
@@ -63,27 +72,95 @@ function showTitle(titleNumber) {
             titles[titleNumber].style.setProperty('--song-size' ,mobileSizes[Math.floor(Math.random() * mobileSizes.length)].mobileSize);
         }
         titles[titleNumber].style.setProperty('--coord-top' ,`${(Math.floor(Math.random() * (18 - 1)) + 1) * 5}%`);
-        titles[titleNumber].style.setProperty('--coord-right' ,`${(Math.floor(Math.random() * (16 - 1)) + 1) * 5}%`);
+        titles[titleNumber].style.setProperty('--coord-right' ,`${(Math.floor(Math.random() * (15 - 1)) + 1) * 5}%`);
             titles[titleNumber].classList.replace('disappear', 'appear');
     }
 }
 
-range.addEventListener('input', async function() {
-    console.log((Math.ceil(range.value / 9)) - 1);
-    console.log(`Значение: ${range.value}`);
+function totalSeperateDate () {
+    let today = new Date();
+    let allSeconds = Math.round((releaseDate - today) / (1000));
 
+    let days = Math.floor(allSeconds / 86400);
+    let hours = Math.floor((allSeconds % 86400) / 3600);
+    let minutes = Math.floor(((allSeconds % 86400) % 3600) / 60);
+    let seconds = Math.floor(((allSeconds % 86400) % 3600) % 60);
+    if (allSeconds >= 0) {
+        return waitTime = [
+            {
+                days: `${days}`.length == 2 ? days : '0' + days,
+                hours: `${hours}`.length == 2 ? hours : '0' + hours,
+                minutes: `${minutes}`.length == 2 ? minutes : '0' + minutes,
+                seconds: `${seconds}`.length == 2 ? seconds : '0' + seconds,
+            }
+        ]
+    }
+}
+
+function changeTimer() {
+    let waitTime = totalSeperateDate();
+    if (waitTime) {
+        if (waitTime[0].days != timerDays.innerHTML) timerDays.innerHTML = waitTime[0].days;
+        if (waitTime[0].hours != timerHours.innerHTML) timerHours.innerHTML = waitTime[0].hours;
+        if (waitTime[0].minutes != timerMinutes.innerHTML) timerMinutes.innerHTML = waitTime[0].minutes;
+        timerSeconds.innerHTML = waitTime[0].seconds;
+    }
+}
+
+let timerUpdate = setInterval(changeTimer, 1000);
+
+function hideTitles() {
+    titles.forEach((title) => {
+        title.classList.replace('appear', 'disappear');
+    })
+}
+
+async function blinkElement(element, ms, elementsTrasitionTime) {
+    element.classList.remove('hidden');
+    await sleep(500);
+    element.classList.remove('disappear');
+    // Amount of time, when element is visible
+    await sleep(ms);
+    element.classList.add('disappear');
+    console.log('disappear');
+    await sleep(1000);
+    element.addEventListener('transitionend', async function () {
+        console.log('hidden');
+        element.classList.add('hidden');
+    })
+    await sleep(elementsTrasitionTime);
+}
+
+async function displayElement(element) {
+        element.classList.remove('hidden');
+        await sleep(500);
+        element.classList.remove('disappear');
+}
+
+async function hideElement(element, ms) {
+    element.classList.add('disappear');
+    await sleep(500);
+    element.addEventListener('transitionend', async function () {
+        element.classList.add('hidden');
+    })
+}
+
+range.addEventListener('input', async function() {
     let value = range.value;
+    console.log(value);
 
     if (value != 0 && value != 100) {
         showTitle((Math.ceil(value / 9)) - 1);
     }
+    else if (range.value == 100) {
+        changeToFinalScreen();
+    }
+    else {
+        hideTitles();
+    }
 
-    if (range.value == 100) {
+    async function massEffect() {
         let ms = 200;
-        range.classList.add('disappear');
-        range.addEventListener('transitionend', ()=> {
-            range.remove();
-        })
 
         for (i = 0; i < 850; i++) {
             let paragraph = document.createElement('p');
@@ -108,19 +185,18 @@ range.addEventListener('input', async function() {
                 mass.remove();
             })
         });
+    }
+
+
+    async function changeToFinalScreen() {
+        hideElement(range);
+
+        await massEffect();
+
         await sleep(3000);
         form.classList.add('hidden');
-        logo.classList.remove('hidden');
-        await sleep(1000);
-        logo.classList.remove('disappear');
-        await sleep(2000);
-        logo.classList.add('disappear');
-        logo.addEventListener('transitionend', async function () {
-            logo.classList.add('hidden');
-            await sleep(1000);
-            placeholder.classList.remove('hidden');
-            await sleep(1000);
-            placeholder.classList.remove('disappear');
-        })
+        await blinkElement(logo, 3000, 3000);
+        await displayElement(timer);
+        displayElement(albumTitle);
     }
 })

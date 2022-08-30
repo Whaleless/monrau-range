@@ -20,7 +20,6 @@ html, body {
     position: fixed;
     overflow-y: scroll;
     width: 100%;
-    position: relative;
 }
 
 .oldBack {
@@ -29,6 +28,7 @@ html, body {
 
 .newBack {
     background: #d0d0d0;
+    flex-direction: column;
 }
 
 .hidden {
@@ -116,6 +116,96 @@ input[type=range]::-webkit-slider-runnable-track {
     transition-duration: 2s;
     width: 75%;
     text-align: center;
+}
+
+.timer-box {
+    transition: opacity 4s;
+}
+
+.timer {
+    display: flex;
+}
+
+.timers-part {
+    transition: opacity 3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 120px;
+    font-size: 96px;
+    font-family: 'Oswald', sans-serif;
+    color: #d0d0d0;
+    background: #3b3b3b;
+    border-radius: 10px;
+    text-align: center;
+    margin-right: 25px;
+    position: relative;
+}
+
+.timers-part::before {
+    content: '';
+    background: #565656;
+    width: 150px;
+    height: 30px;
+    position: absolute;
+    z-index: -1;
+}
+
+.timers-part::after {
+    content: '';
+    background: #d0d0d0;
+    width: 140px;
+    height: 2px;
+    position: absolute;
+    z-index: 1;
+}
+
+.timer-digits {
+}
+
+.timer-digits::after {
+    text-transform: uppercase;
+    position: absolute;
+    font-size: 36px;
+    color: #3b3b3b;
+    bottom: -40%;
+}
+
+.days::after {
+    content: 'days';
+    left: 25%;
+}
+
+.hours::after {
+    content: 'hours';
+    left: 12%;
+}
+
+.minutes::after {
+    content: 'minutes';
+    left: 5%;
+}
+
+.seconds::after {
+    content: 'seconds';
+    left: 2%;
+}
+
+.timer-digits {
+    margin-bottom: 10px;
+}
+
+.timers-part:last-child {
+    margin-right: 0;
+}
+
+.album-title {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 72px;
+    color: #565656;
+    margin-bottom: 36px;
+    transition: opacity 2s;
 }
 
 @media (max-device-width: 1079px) {
