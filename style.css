@@ -205,7 +205,65 @@ input[type=range]::-webkit-slider-runnable-track {
     font-size: 72px;
     color: #565656;
     margin-bottom: 36px;
+    transition: 2s;
+}
+
+.trans-album-title {
+    position: absolute;
+    top: 37%;
+}
+
+.album-description {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 24px;
+    color: #565656;
+    width: 70%;
     transition: opacity 2s;
+}
+
+
+
+
+
+
+
+
+
+
+.for-test {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    transition: opacity 2s;
+}
+
+.cheat {
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    background: #565656;
+    box-shadow: 0 0 0 2px #d0d0d0,
+                0 0 0 4px #565656;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.cheat:hover {
+    background: #414141;
+}
+
+.cheat:active {
+    background: #282828;
+}
+
+.cheat-label {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 16px;
+    color: #565656;
+    margin-left: 10px;
+    bottom: 15px;
 }
 
 @media (max-device-width: 1079px) {

@@ -33,7 +33,7 @@ const mobileSizes = [
     {id: 3, mobileSize: '72px'}
 ]
 
-const releaseDate = new Date('2022-09-30T21:00');
+let releaseDate = new Date('2022-09-30T21:00');
 
 let body = document.querySelector('.body');
 let range = document.querySelector('.range');
@@ -43,14 +43,14 @@ let logo = document.querySelector('.logo');
 let form = document.querySelector('.form');
 const timer = document.querySelector('.timer-box');
 const albumTitle = document.querySelector('.album-title');
+const albumDescription = document.querySelector('.album-description');
 let timerDays = document.querySelector('.days');
 let timerHours = document.querySelector('.hours');
 let timerMinutes = document.querySelector('.minutes');
 let timerSeconds = document.querySelector('.seconds');
+const TEST = document.querySelector('.for-test');
 
 
-
-console.log(window.innerWidth);
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -77,9 +77,9 @@ function showTitle(titleNumber) {
     }
 }
 
-function totalSeperateDate () {
-    let today = new Date();
-    let allSeconds = Math.round((releaseDate - today) / (1000));
+function totalSeparateDate () {
+    let dateNow = new Date();
+    let allSeconds = Math.round((releaseDate - dateNow) / (1000));
 
     let days = Math.floor(allSeconds / 86400);
     let hours = Math.floor((allSeconds % 86400) / 3600);
@@ -95,10 +95,14 @@ function totalSeperateDate () {
             }
         ]
     }
+    else if (allSeconds <= 0) {
+        clearInterval(timerUpdate);
+        thirdStepAction();
+    }
 }
 
 function changeTimer() {
-    let waitTime = totalSeperateDate();
+    let waitTime = totalSeparateDate();
     if (waitTime) {
         if (waitTime[0].days != timerDays.innerHTML) timerDays.innerHTML = waitTime[0].days;
         if (waitTime[0].hours != timerHours.innerHTML) timerHours.innerHTML = waitTime[0].hours;
@@ -109,26 +113,44 @@ function changeTimer() {
 
 let timerUpdate = setInterval(changeTimer, 1000);
 
-function hideTitles() {
+function hideAllTitles() {
     titles.forEach((title) => {
         title.classList.replace('appear', 'disappear');
     })
 }
 
-async function blinkElement(element, ms, elementsTrasitionTime) {
-    element.classList.remove('hidden');
-    await sleep(500);
-    element.classList.remove('disappear');
-    // Amount of time, when element is visible
-    await sleep(ms);
+async function blinkElementToShow(element, timeInDiffState, elementsTransitionTime) {
+        element.classList.remove('hidden');
+        await sleep(500);
+        element.classList.remove('disappear');
+        // Amount of time, when element is visible
+        await sleep(timeInDiffState);
+        element.classList.add('disappear');
+        console.log('disappear');
+        await sleep(1000);
+        element.addEventListener('transitionend', async function () {
+            console.log('hidden');
+            element.classList.add('hidden');
+        })
+        await sleep(elementsTransitionTime);
+}
+
+async function blinkElementToHide(element, timeInDiffState, elementsTransitionTime, exist) {
     element.classList.add('disappear');
     console.log('disappear');
     await sleep(1000);
-    element.addEventListener('transitionend', async function () {
-        console.log('hidden');
-        element.classList.add('hidden');
-    })
-    await sleep(elementsTrasitionTime);
+    if (exist == true) {
+        element.addEventListener('transitionend', async function () {
+            console.log('hidden');
+            element.classList.add('hidden');
+        })
+    }
+    await sleep(timeInDiffState);
+    if (exist == true) {
+        element.classList.remove('hidden');
+        await sleep(500);
+    }
+    element.classList.remove('disappear');
 }
 
 async function displayElement(element) {
@@ -156,8 +178,13 @@ range.addEventListener('input', async function() {
         changeToFinalScreen();
     }
     else {
-        hideTitles();
+        hideAllTitles();
     }
+
+    TEST.addEventListener('click', ()=> {
+        releaseDate = Date.now() + 5500;
+        TEST.remove();
+    })
 
     async function massEffect() {
         let ms = 200;
@@ -187,7 +214,6 @@ range.addEventListener('input', async function() {
         });
     }
 
-
     async function changeToFinalScreen() {
         hideElement(range);
 
@@ -195,8 +221,26 @@ range.addEventListener('input', async function() {
 
         await sleep(3000);
         form.classList.add('hidden');
-        await blinkElement(logo, 3000, 3000);
+        await blinkElementToShow(logo, 3000, 3000);
         await displayElement(timer);
         displayElement(albumTitle);
+        displayElement(TEST);
     }
 })
+
+async function thirdStepAction() {
+    hideElement(timer);
+    await blinkElementToHide(albumTitle, 3000, 3000, false);
+    albumDescription.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do' +
+        ' eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero id faucibus nisl tincidunt' +
+        ' eget. Tortor id aliquet lectus proin nibh nisl. Sagittis purus sit amet volutpat consequat' +
+        ' mauris nunc. Enim neque volutpat ac tincidunt vitae semper quis lectus. Convallis convallis' +
+        ' tellus id interdum velit laoreet id donec ultrices. Neque egestas congue quisque egestas diam in.' +
+        ' Purus semper eget duis at tellus at urna condimentum. Eu non diam phasellus vestibulum lorem sed' +
+        ' risus ultricies. Pharetra et ultrices neque ornare. Dignissim sodales ut eu sem integer vitae justo.' +
+        ' Vulputate odio ut enim blandit. Urna condimentum mattis pellentesque id nibh tortor id aliquet.' +
+        ' Cursus turpis massa tincidunt dui ut ornare lectus sit amet. Sit amet tellus cras adipiscing enim' +
+        ' eu turpis. Egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam. Risus viverra' +
+        ' adipiscing at in.';
+    await displayElement(albumDescription);
+}
