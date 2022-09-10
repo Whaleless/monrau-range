@@ -1,0 +1,21 @@
+{
+  "name": "monrau-range",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scrit.js",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Whaleless/monrau-range.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Whaleless/monrau-range/issues"
+  },
+  "homepage": "https://github.com/Whaleless/monrau-range#readme"
+}
