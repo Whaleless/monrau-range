@@ -2,24 +2,23 @@
   "name": "monrau-range",
   "version": "1.0.0",
   "description": "",
-  "main": "scrit.js",
-  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "main": "index.html",
   "scripts": {
     "start": "parcel",
     "build": "parcel build"
   },
-  "devDependencies": {
-    "parcel": "latest"
-  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Whaleless/monrau-range.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Whaleless/monrau-range/issues"
   },
-  "homepage": "https://github.com/Whaleless/monrau-range#readme"
+  "homepage": "https://github.com/Whaleless/monrau-range#readme",
+  "devDependencies": {
+    "parcel": "latest"
+  }
 }
