@@ -2,9 +2,9 @@
   "name": "monrau-range",
   "version": "1.0.0",
   "description": "",
-  "main": "index.html",
+  "main": "index.js",
   "scripts": {
-    "start": "parcel",
+    "start": "parcel index.html",
     "build": "parcel build"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
@@ -18,7 +18,11 @@
     "url": "https://github.com/Whaleless/monrau-range/issues"
   },
   "homepage": "https://github.com/Whaleless/monrau-range#readme",
+  "dependencies": {
+    "parcel": "^2.7.0"
+  },
   "devDependencies": {
-    "parcel": "latest"
+    "cssnano": "^5.1.13",
+    "postcss": "^8.4.16"
   }
 }
