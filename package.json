@@ -2,9 +2,9 @@
   "name": "monrau-range",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "source": "index.html",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel",
     "build": "parcel build"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
