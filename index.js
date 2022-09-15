@@ -69,7 +69,7 @@ function showTitle(titleNumber) {
 
     if (!titles[titleNumber].classList.contains('appear')) {
         titles[titleNumber].innerHTML = songs[titleNumber].title;
-        if(window.innerWidth > 1080) {
+        if(screen.width > 720) {
             titles[titleNumber].style.setProperty('--song-size' ,sizes[Math.floor(Math.random() * sizes.length)].size);
             titles[titleNumber].style.setProperty('--coord-top' ,randomCoords(5, 90));
             titles[titleNumber].style.setProperty('--coord-right' ,randomCoords(5, 75));
@@ -77,7 +77,7 @@ function showTitle(titleNumber) {
         else {
             titles[titleNumber].style.setProperty('--song-size' ,mobileSizes[Math.floor(Math.random() * mobileSizes.length)].mobileSize);
             titles[titleNumber].style.setProperty('--coord-top' ,randomCoords(5, 90));
-            titles[titleNumber].style.setProperty('--coord-right' ,randomCoords(30, 80));
+            titles[titleNumber].style.setProperty('--coord-right' ,randomCoords(25, 75));
         }
             titles[titleNumber].classList.replace('disappear', 'appear');
     }
