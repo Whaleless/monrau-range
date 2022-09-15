@@ -77,7 +77,7 @@ function showTitle(titleNumber) {
         else {
             titles[titleNumber].style.setProperty('--song-size' ,mobileSizes[Math.floor(Math.random() * mobileSizes.length)].mobileSize);
             titles[titleNumber].style.setProperty('--coord-top' ,randomCoords(5, 95));
-            titles[titleNumber].style.setProperty('--coord-right' ,randomCoords(20, 70));
+            titles[titleNumber].style.setProperty('--coord-right' ,randomCoords(15, 65));
         }
             titles[titleNumber].classList.replace('disappear', 'appear');
     }
