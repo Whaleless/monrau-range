@@ -69,7 +69,7 @@ function showTitle(titleNumber) {
 
     if (!titles[titleNumber].classList.contains('appear')) {
         titles[titleNumber].innerHTML = songs[titleNumber].title;
-        console.log(window.innerWidth);
+        alert(body.clientWidth);
         if(window.innerWidth > 720) {
             titles[titleNumber].style.setProperty('--song-size' ,sizes[Math.floor(Math.random() * sizes.length)].size);
             titles[titleNumber].style.setProperty('--coord-top' ,randomCoords(5, 90));
