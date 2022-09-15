@@ -56,6 +56,10 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function randomCoords(minProcents, maxProcents) {
+    return `${Math.floor(Math.random() * (maxProcents - minProcents)) + minProcents}%`
+}
+
 function showTitle(titleNumber) {
     titles.forEach((title) => {
         if (titles[titleNumber] != title) {
@@ -65,14 +69,17 @@ function showTitle(titleNumber) {
 
     if (!titles[titleNumber].classList.contains('appear')) {
         titles[titleNumber].innerHTML = songs[titleNumber].title;
-        if(window.innerWidth >= 1080) {
+        console.log(window.innerWidth);
+        if(window.innerWidth > 720) {
             titles[titleNumber].style.setProperty('--song-size' ,sizes[Math.floor(Math.random() * sizes.length)].size);
+            titles[titleNumber].style.setProperty('--coord-top' ,randomCoords(5, 90));
+            titles[titleNumber].style.setProperty('--coord-right' ,randomCoords(5, 75));
         }
         else {
             titles[titleNumber].style.setProperty('--song-size' ,mobileSizes[Math.floor(Math.random() * mobileSizes.length)].mobileSize);
+            titles[titleNumber].style.setProperty('--coord-top' ,randomCoords(5, 90));
+            titles[titleNumber].style.setProperty('--coord-right' ,randomCoords(30, 80));
         }
-        titles[titleNumber].style.setProperty('--coord-top' ,`${(Math.floor(Math.random() * (18 - 1)) + 1) * 5}%`);
-        titles[titleNumber].style.setProperty('--coord-right' ,`${(Math.floor(Math.random() * (15 - 1)) + 1) * 5}%`);
             titles[titleNumber].classList.replace('disappear', 'appear');
     }
 }
