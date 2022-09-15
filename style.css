@@ -266,7 +266,7 @@ input[type=range]::-webkit-slider-runnable-track {
     bottom: 15px;
 }
 
-@media (max-device-width: 719px) {
+@media (max-device-width: 720px) {
     input[type=range]::-webkit-slider-thumb {
         margin-top: -40px;
         height: 80px;
