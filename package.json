@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Whaleless/monrau-range#readme",
   "dependencies": {
+    "browserify": "^17.0.0",
     "parcel": "^2.7.0"
   },
   "devDependencies": {

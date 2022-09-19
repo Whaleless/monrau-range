@@ -48,8 +48,7 @@ const mobileSizes = [
     {id: 3, mobileSize: '72px'}
 ]
 
-let releaseDate = new Date('2022-09-23T00:00');
-
+let releaseDate = new Date('2022-09-23TT00:00');
 
 let body = document.querySelector('.body');
 const launchBlock = document.querySelector('.launch-block');
@@ -74,8 +73,7 @@ const songsTitles = document.querySelectorAll('.song-name');
 const songDescription = document.querySelector('.song-description');
 const TEST = document.querySelector('.for-test');
 
-let audioUrl = require('url:./back.mp3');
-let backAudio = new Audio(audioUrl);
+let backAudio = document.querySelector('.audio');
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
