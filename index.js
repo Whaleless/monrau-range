@@ -81,7 +81,7 @@ function sleep(ms) {
 }
 
 launchScreen.addEventListener('click', async function () {
-    backAudio.src = 'back.mp3';
+    backAudio.src = './back.mp3';
     backAudio.loop = true;
     backAudio.muted = true;
     backAudio.play();
