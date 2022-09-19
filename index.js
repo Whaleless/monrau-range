@@ -229,7 +229,7 @@ range.addEventListener('input', async function() {
     async function massEffect() {
         let ms = 231;
 
-        for (i = 0; i < 850; i++) {
+        for (let i = 0; i < 850; i++) {
             let paragraph = document.createElement('p');
             paragraph.className = 'mass title disappear';
             paragraph.innerHTML = songs[Math.floor(Math.random() * songs.length)].title;
