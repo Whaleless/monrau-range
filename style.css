@@ -14,12 +14,18 @@ html, body {
 
 .body {
     display: flex;
-    justify-content: center;
     align-items: center;
     transition-duration: 3s;
+    width: 100%;
+}
+
+.no-scroll {
     position: fixed;
     overflow-y: scroll;
-    width: 100%;
+}
+
+.justy {
+    justify-content: center;
 }
 
 .oldBack {
@@ -32,17 +38,39 @@ html, body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.launch-block {
+    display: flex;
+    justify-content: center;
+    transition: 1.5s;
+    width: 100%;
+}
+
+.launch {
+    margin: auto 0;
+    color: #a2a2a2;
+    font-size: 72px;
+    font-family: 'Tenor Sans', sans-serif;
+}
+
+.launch-img {
+    position: relative;
+    right: 20px;
+    bottom: 10px;
 }
 
 .logo {
     transition-duration: 3s;
+    align-self: center;
 }
 
 form {
     width: 100%;
     display: flex;
     justify-content: center;
+    transition: 1.5s;
 }
 
 .range {
@@ -118,6 +146,97 @@ input[type=range]::-webkit-slider-runnable-track {
     text-align: center;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 3s;
+    margin-bottom: auto;
+    padding-top: 45px;
+    padding-bottom: 85px;
+    width: 100%;
+    box-shadow: #3b3b3b 0 1px 20px;
+}
+
+.lowerPart {
+    display: flex;
+    justify-items: flex-start;
+    margin-bottom: auto;
+    padding: 50px;
+}
+
+.tracklist, .monraus-text {
+    background: #565656;
+    color: #d0d0d0;
+    font-size: 24px;
+    font-family: 'Tenor Sans', sans-serif;
+    align-self: flex-start;
+    transition: 3s;
+    padding: 25px;
+    border-radius: 15px;
+    min-width: 250px;
+}
+
+.tracklist {
+    line-height: 15px;
+    padding-right: 35px;
+}
+
+.menu-title {
+    text-align: center;
+}
+
+.song-name {
+    margin: 0 0 5px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 15px;
+    color: #d0d0d0;
+    transition: .2s;
+}
+
+.song-name:hover {
+    color: #a2a2a2;
+}
+
+.feat {
+    font-size: 18px;
+    line-height: 20px;
+    position: relative;
+    bottom: 0px;
+    left: 30px;
+}
+
+.feat.last {
+    left: 35px;
+}
+
+.monraus-text {
+    max-width: 700px;
+    margin-right: 50px;
+}
+
+.networks {
+    display: flex;
+    width: 70%;
+    padding: 15px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin: 15px;
+    margin-top: -5px;
+    border-radius: 10px;
+    justify-content: space-around;
+}
+
+.networks > a {
+    margin-right: 15px;
+    margin-bottom: 40px;
+}
+
+.networks > a:last-child {
+    margin-right: 0;
+}
+
 .timer-box {
     transition: opacity 4s;
 }
@@ -159,9 +278,6 @@ input[type=range]::-webkit-slider-runnable-track {
     height: 2px;
     position: absolute;
     z-index: 1;
-}
-
-.timer-digits {
 }
 
 .timer-digits::after {
@@ -219,6 +335,7 @@ input[type=range]::-webkit-slider-runnable-track {
     color: #565656;
     width: 70%;
     transition: opacity 2s;
+    text-align: center;
 }
 
 
@@ -231,7 +348,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 
 .for-test {
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     left: 10px;
     transition: opacity 2s;
@@ -273,10 +390,33 @@ input[type=range]::-webkit-slider-runnable-track {
         width: 80px;
     }
 
-
     .range {
         position: absolute;
         width: 130%;
         transform: translate(30%, -50%) rotate(-90deg);
+    }
+
+    .container {
+        position: relative;
+        top: 0;
+    }
+
+    .lowerPart {
+        flex-direction: column;
+    }
+
+    .tracklist, .monraus-text {
+        margin-top: 40px;
+        margin-right: 0;
+    }
+
+    .networks {
+        width: 100%;
+        padding-top: 30px;
+        box-shadow: #3b3b3b 0 -1px 20px;
+    }
+
+    .networks > a {
+        margin-bottom: 20px;
     }
 }

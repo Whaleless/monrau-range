@@ -36,6 +36,8 @@ const mobileSizes = [
 let releaseDate = new Date('2022-09-30T21:00');
 
 let body = document.querySelector('.body');
+const launchBlock = document.querySelector('.launch-block');
+const networkBlock = document.querySelector('.networks');
 let range = document.querySelector('.range');
 let titles = document.querySelectorAll('.title');
 let massive = document.querySelector('.massive');
@@ -44,17 +46,25 @@ let form = document.querySelector('.form');
 const timer = document.querySelector('.timer-box');
 const albumTitle = document.querySelector('.album-title');
 const albumDescription = document.querySelector('.album-description');
+const container = document.querySelector('.container');
+const lowerPart = document.querySelector('.lowerPart');
+const tracklist = document.querySelector('.tracklist');
+const monrausText = document.querySelector('.monraus-text');
 let timerDays = document.querySelector('.days');
 let timerHours = document.querySelector('.hours');
 let timerMinutes = document.querySelector('.minutes');
 let timerSeconds = document.querySelector('.seconds');
 const TEST = document.querySelector('.for-test');
 
-
-
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+window.addEventListener('load', async function Launching() {
+    await sleep(1000);
+    await blinkElementToShow(launchBlock, 2000, 1500);
+    displayElement(form);
+})
 
 function randomCoords(minProcents, maxProcents) {
     return `${Math.floor(Math.random() * (maxProcents - minProcents)) + minProcents}%`
@@ -103,7 +113,7 @@ function totalSeparateDate () {
     }
     else if (allSeconds <= 0) {
         clearInterval(timerUpdate);
-        thirdStepAction();
+        timerEnds();
     }
 }
 
@@ -193,7 +203,7 @@ range.addEventListener('input', async function() {
     })
 
     async function massEffect() {
-        let ms = 200;
+        let ms = 231;
 
         for (i = 0; i < 850; i++) {
             let paragraph = document.createElement('p');
@@ -208,7 +218,7 @@ range.addEventListener('input', async function() {
             if (i == 800) {
                 body.classList.replace('oldBack', 'newBack');
             }
-            if (ms != 10) ms = ms - 5;
+            if (ms != 7) ms = ms - 7;
         }
 
         body.addEventListener('transitionend', async function() {
@@ -228,25 +238,21 @@ range.addEventListener('input', async function() {
         await sleep(3000);
         form.classList.add('hidden');
         await blinkElementToShow(logo, 3000, 3000);
-        await displayElement(timer);
+        body.classList.remove('justy', 'no-scroll');
+        displayElement(container);
+        displayElement(timer);
         displayElement(albumTitle);
+        displayElement(lowerPart);
+        displayElement(networkBlock);
+        displayElement(tracklist);
+        displayElement(monrausText);
         displayElement(TEST);
     }
 })
 
-async function thirdStepAction() {
+async function timerEnds() {
     hideElement(timer);
     await blinkElementToHide(albumTitle, 3000, 3000, false);
-    albumDescription.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do' +
-        ' eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero id faucibus nisl tincidunt' +
-        ' eget. Tortor id aliquet lectus proin nibh nisl. Sagittis purus sit amet volutpat consequat' +
-        ' mauris nunc. Enim neque volutpat ac tincidunt vitae semper quis lectus. Convallis convallis' +
-        ' tellus id interdum velit laoreet id donec ultrices. Neque egestas congue quisque egestas diam in.' +
-        ' Purus semper eget duis at tellus at urna condimentum. Eu non diam phasellus vestibulum lorem sed' +
-        ' risus ultricies. Pharetra et ultrices neque ornare. Dignissim sodales ut eu sem integer vitae justo.' +
-        ' Vulputate odio ut enim blandit. Urna condimentum mattis pellentesque id nibh tortor id aliquet.' +
-        ' Cursus turpis massa tincidunt dui ut ornare lectus sit amet. Sit amet tellus cras adipiscing enim' +
-        ' eu turpis. Egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam. Risus viverra' +
-        ' adipiscing at in.';
+    albumDescription.innerHTML = 'Уже на всех площадках';
     await displayElement(albumDescription);
 }
