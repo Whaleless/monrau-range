@@ -345,7 +345,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 
 
-
+/*####################################   FOR TEST   ####################################*/
 
 .for-test {
     position: fixed;
@@ -383,6 +383,12 @@ input[type=range]::-webkit-slider-runnable-track {
     bottom: 15px;
 }
 
+/*####################################   FOR TEST   ####################################*/
+
+
+
+
+
 @media (max-device-width: 720px) {
     input[type=range]::-webkit-slider-thumb {
         margin-top: -40px;
@@ -398,6 +404,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
     .container {
         position: relative;
+        width: 103%;
         top: 0;
     }
 
@@ -414,9 +421,15 @@ input[type=range]::-webkit-slider-runnable-track {
         width: 100%;
         padding-top: 30px;
         box-shadow: #3b3b3b 0 -1px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+        grid-row-gap: 25px;
+        justify-items: center;
     }
 
     .networks > a {
-        margin-bottom: 20px;
+        margin: 0;
+        transform: scale(1.4);
     }
 }
