@@ -73,6 +73,7 @@ let timerSeconds = document.querySelector('.seconds');
 const songsTitles = document.querySelectorAll('.song-name');
 const songDescription = document.querySelector('.song-description');
 const backyBack = document.querySelector('.backyBack');
+const clearLogo = document.querySelector('.clear-logo');
 
 let backAudio = document.querySelector('.audio');
 
@@ -292,13 +293,25 @@ range.addEventListener('input', async function() {
         displayElement(networkBlock);
         displayElement(tracklist);
         displayElement(monrausText);
-        displayElement(TEST);
+        displayElement(clearLogo);
     }
 
 
 songsTitles.forEach((title) => {
     title.addEventListener('click', () => {
         songDescription.innerHTML = descriptions[title.dataset.id].description;
+
+        const scrollTarget = document.getElementById('desc');
+        //const topOffset = document.querySelector('.scrollto').offsetHeight;
+        const topOffset = 0; // если не нужен отступ сверху
+        const elementPosition = scrollTarget.getBoundingClientRect().top;
+        const offsetPosition = elementPosition - topOffset;
+
+        window.scrollBy({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+
     })
 })
 

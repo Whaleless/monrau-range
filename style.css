@@ -207,16 +207,18 @@ input[type=range]::-webkit-slider-runnable-track {
     align-self: flex-start;
     transition: 3s;
     padding: 25px;
+    padding-right: 35px;
     border-radius: 15px;
     min-width: 250px;
 }
 
 .tracklist {
     line-height: 15px;
-    padding-right: 35px;
+    margin-right: 50px;
 }
 
 .menu-title {
+    padding-right: 35px;
     text-align: center;
 }
 
@@ -247,7 +249,6 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .monraus-text {
     max-width: 700px;
-    margin-right: 50px;
 }
 
 .networks {
@@ -372,6 +373,12 @@ input[type=range]::-webkit-slider-runnable-track {
     text-align: center;
 }
 
+.clear-logo {
+    margin: -15px auto 0;
+    width: 250px;
+    padding-bottom: 40px;
+}
+
 
 @media (max-device-width: 720px) {
     input[type=range]::-webkit-slider-thumb {
@@ -398,10 +405,26 @@ input[type=range]::-webkit-slider-runnable-track {
     }
 
     .tracklist, .monraus-text {
+        font-size: 48px;
         max-width: none;
         width: 90%;
         margin-top: 40px;
         margin-right: 0;
+    }
+
+    .tracklist {
+        line-height: 55px;
+    }
+
+    .feat {
+        line-height: 35px;
+        position: relative;
+        bottom: 5px;
+        left: 60px;
+    }
+
+    .feat.last {
+        left: 75px;
     }
 
     .networks {
@@ -419,5 +442,11 @@ input[type=range]::-webkit-slider-runnable-track {
         margin: 0;
         margin-bottom: 20px;
         transform: scale(1.6);
+    }
+
+    .clear-logo {
+        margin: 20px auto 0;
+        width: 250px;
+        padding-bottom: 40px;
     }
 }
