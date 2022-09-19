@@ -2,11 +2,11 @@ const songs = [
     {id: 1, title: 'Ненависть'},
     {id: 2, title: 'Тишина'},
     {id: 3, title: 'Километры и дожди'},
-    {id: 4, title: 'Точка Паника'},
+    {id: 4, title: 'Точка паника'},
     {id: 5, title: 'Измена'},
     {id: 6, title: 'Богема'},
     {id: 7, title: 'Окнами'},
-    {id: 8, title: 'Кину тебя'},
+    {id: 8, title: 'Моя муза'},
     {id: 9, title: 'Градусы'},
     {id: 10, title: 'Сто таблеток'},
     {id: 11, title: 'Молодым'}
@@ -246,7 +246,7 @@ range.addEventListener('input', async function() {
     async function massEffect() {
         let ms = 180;
 
-        for (let i = 0; i < 850; i++) {
+        for (let i = 0; i < 650; i++) {
             let paragraph = document.createElement('p');
             paragraph.className = 'mass title disappear';
             paragraph.innerHTML = songs[Math.floor(Math.random() * songs.length)].title;
@@ -263,7 +263,7 @@ range.addEventListener('input', async function() {
         }
 
         body.addEventListener('transitionend', async function() {
-            await sleep(3000);
+            await sleep(2000);
             let masses = document.querySelectorAll('.title');
             masses.forEach((mass) => {
                 mass.remove();
@@ -276,9 +276,9 @@ range.addEventListener('input', async function() {
 
         await massEffect();
 
-        await sleep(3000);
+        await sleep(1800);
         form.classList.add('hidden');
-        await blinkElementToShow(logo, 3000, 3000);
+        await blinkElementToShow(logo, 1500, 1000);
 
         body.classList.add('flexColumn');
         body.classList.remove('justy', 'no-scroll');
