@@ -300,18 +300,17 @@ range.addEventListener('input', async function() {
 songsTitles.forEach((title) => {
     title.addEventListener('click', () => {
         songDescription.innerHTML = descriptions[title.dataset.id].description;
+        if(screen.width < 720) {
+            const scrollTarget = document.getElementById('desc');
+            const topOffset = 0; // если не нужен отступ сверху
+            const elementPosition = scrollTarget.getBoundingClientRect().top;
+            const offsetPosition = elementPosition - topOffset;
 
-        const scrollTarget = document.getElementById('desc');
-        //const topOffset = document.querySelector('.scrollto').offsetHeight;
-        const topOffset = 0; // если не нужен отступ сверху
-        const elementPosition = scrollTarget.getBoundingClientRect().top;
-        const offsetPosition = elementPosition - topOffset;
-
-        window.scrollBy({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
-
+            window.scrollBy({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
     })
 })
 
