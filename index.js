@@ -74,7 +74,7 @@ const songsTitles = document.querySelectorAll('.song-name');
 const songDescription = document.querySelector('.song-description');
 const TEST = document.querySelector('.for-test');
 
-let audioUrl = require('/back.mp3');
+let audioUrl = require('url:./back.mp3');
 let backAudio = new Audio(audioUrl);
 
 function sleep(ms) {
