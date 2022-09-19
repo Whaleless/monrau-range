@@ -12,6 +12,21 @@ const songs = [
     {id: 11, title: 'Молодым'}
 ];
 
+const descriptions = [
+    {id: 1, description: 'трэк 1 - БлаБлаБла'},
+    {id: 2, description: 'трэк 2 - БлаБлаБла'},
+    {id: 3, description: 'трэк 3 - БлаБлаБла'},
+    {id: 4, description: 'трэк 4 - БлаБлаБла'},
+    {id: 5, description: 'трэк 5 - БлаБлаБла'},
+    {id: 6, description: 'трэк 6 - БлаБлаБла'},
+    {id: 7, description: 'трэк 7 - БлаБлаБла'},
+    {id: 8, description: 'трэк 8 - БлаБлаБла'},
+    {id: 9, description: 'трэк 9 - БлаБлаБла'},
+    {id: 10, description: 'трэк 10 - БлаБлаБла'},
+    {id: 11, description: 'трэк 11 - БлаБлаБла'},
+    {id: 12, description: 'трэк 12 - БлаБлаБла'}
+]
+
 const sizes = [
     {id: 1, size: '24px'},
     {id: 2, size: '36px'},
@@ -33,7 +48,8 @@ const mobileSizes = [
     {id: 3, mobileSize: '72px'}
 ]
 
-let releaseDate = new Date('2022-09-30T21:00');
+let releaseDate = new Date('2022-09-23T00:00');
+
 
 let body = document.querySelector('.body');
 const launchBlock = document.querySelector('.launch-block');
@@ -54,7 +70,11 @@ let timerDays = document.querySelector('.days');
 let timerHours = document.querySelector('.hours');
 let timerMinutes = document.querySelector('.minutes');
 let timerSeconds = document.querySelector('.seconds');
+const songsTitles = document.querySelectorAll('.song-name');
+const songDescription = document.querySelector('.song-description');
 const TEST = document.querySelector('.for-test');
+
+let backAudio = new Audio('back.mp3')
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -197,6 +217,11 @@ range.addEventListener('input', async function() {
         hideAllTitles();
     }
 
+    if (value != 0) {
+        backAudio.play();
+        backAudio.volume = range.value/100;
+    }
+
     TEST.addEventListener('click', ()=> {
         releaseDate = Date.now() + 5500;
         TEST.remove();
@@ -248,6 +273,13 @@ range.addEventListener('input', async function() {
         displayElement(monrausText);
         displayElement(TEST);
     }
+})
+
+songsTitles.forEach((title) => {
+    title.addEventListener('click', () => {
+        console.log(title.dataset.id);
+        songDescription.innerHTML = descriptions[title.dataset.id].description;
+    })
 })
 
 async function timerEnds() {
