@@ -74,7 +74,7 @@ const songsTitles = document.querySelectorAll('.song-name');
 const songDescription = document.querySelector('.song-description');
 const TEST = document.querySelector('.for-test');
 
-let backAudio = new Audio('back.mp3')
+let backAudio = new Audio('/back.mp3')
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
