@@ -13,7 +13,7 @@ const songs = [
 ];
 
 const descriptions = [
-    {id: 1, description: 'трэк 1 - БлаБлаБлаБла БлаБлаБлаБлаБлаБлаБ лаБлаБла БлаБлаБлаБлаБлаБл аБлаБлаБ лаБлаБла'},
+    {id: 1, description: 'трэк 1 - БлаБлаБла'},
     {id: 2, description: 'трэк 2 - БлаБлаБлаБла БлаБлаБлаБлаБлаБлаБ лаБлаБла БлаБлаБлаБлаБлаБл аБлаБлаБ лаБлаБла'},
     {id: 3, description: 'трэк 3 - БлаБлаБлаБла БлаБлаБлаБлаБлаБлаБ лаБлаБла БлаБлаБлаБлаБлаБл аБлаБлаБ лаБлаБла'},
     {id: 4, description: 'трэк 4 - БлаБлаБлаБла БлаБлаБлаБлаБлаБлаБ лаБлаБла БлаБлаБлаБлаБлаБл аБлаБлаБ лаБлаБла'},
@@ -48,9 +48,10 @@ const mobileSizes = [
     {id: 3, mobileSize: '72px'}
 ]
 
-let releaseDate = new Date('2022-09-23TT00:00');
+let releaseDate = new Date('2022-09-23T00:00:00');
 
 let body = document.querySelector('.body');
+const launchScreen = document.querySelector('.launch-screen');
 const launchBlock = document.querySelector('.launch-block');
 const networkBlock = document.querySelector('.networks');
 let range = document.querySelector('.range');
@@ -71,7 +72,7 @@ let timerMinutes = document.querySelector('.minutes');
 let timerSeconds = document.querySelector('.seconds');
 const songsTitles = document.querySelectorAll('.song-name');
 const songDescription = document.querySelector('.song-description');
-const TEST = document.querySelector('.for-test');
+const backyBack = document.querySelector('.backyBack');
 
 let backAudio = document.querySelector('.audio');
 
@@ -79,11 +80,23 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+launchScreen.addEventListener('click', async function () {
+    backAudio.src = 'back.mp3';
+    backAudio.loop = true;
+    backAudio.muted = true;
+    backAudio.play();
+    window.setTimeout(function() {
+        backAudio.pause();
+    }, 1);
+    launchScreen.remove();
+    await hideElement(launchBlock, 3000);
+    await displayElement(form);
+})
+
 window.addEventListener('load', async function Launching() {
     await sleep(1000);
-    await blinkElementToShow(launchBlock, 2000, 1500);
-    displayElement(form);
-})
+    await displayElement(launchBlock);
+    })
 
 function randomCoords(minProcents, maxProcents) {
     return `${Math.floor(Math.random() * (maxProcents - minProcents)) + minProcents}%`
@@ -120,6 +133,7 @@ function totalSeparateDate () {
     let hours = Math.floor((allSeconds % 86400) / 3600);
     let minutes = Math.floor(((allSeconds % 86400) % 3600) / 60);
     let seconds = Math.floor(((allSeconds % 86400) % 3600) % 60);
+    let waitTime;
     if (allSeconds >= 0) {
         return waitTime = [
             {
@@ -129,8 +143,7 @@ function totalSeparateDate () {
                 seconds: `${seconds}`.length == 2 ? seconds : '0' + seconds,
             }
         ]
-    }
-    else if (allSeconds <= 0) {
+    } else if (allSeconds <= 0) {
         clearInterval(timerUpdate);
         timerEnds();
     }
@@ -161,10 +174,8 @@ async function blinkElementToShow(element, timeInDiffState, elementsTransitionTi
         // Amount of time, when element is visible
         await sleep(timeInDiffState);
         element.classList.add('disappear');
-        console.log('disappear');
         await sleep(1000);
         element.addEventListener('transitionend', async function () {
-            console.log('hidden');
             element.classList.add('hidden');
         })
         await sleep(elementsTransitionTime);
@@ -172,7 +183,6 @@ async function blinkElementToShow(element, timeInDiffState, elementsTransitionTi
 
 async function blinkElementToHide(element, timeInDiffState, elementsTransitionTime, exist) {
     element.classList.add('disappear');
-    console.log('disappear');
     await sleep(1000);
     if (exist == true) {
         element.addEventListener('transitionend', async function () {
@@ -216,26 +226,25 @@ range.addEventListener('input', async function() {
         hideAllTitles();
     }
 
+
+
     if (value != 0) {
         backAudio.volume = range.value/100;
         range.removeEventListener('click', addSrc());
     }
 
     function addSrc() {
+        backAudio.muted = false;
         backAudio.play();
-        backAudio.src = 'back.mp3';
-        console.log('херакс');
     }
 
     range.addEventListener('click', addSrc());
 
-    TEST.addEventListener('click', ()=> {
-        releaseDate = Date.now() + 5500;
-        TEST.remove();
-    })
+})
+
 
     async function massEffect() {
-        let ms = 231;
+        let ms = 180;
 
         for (let i = 0; i < 850; i++) {
             let paragraph = document.createElement('p');
@@ -247,10 +256,10 @@ range.addEventListener('input', async function() {
             massive.append(paragraph);
             await sleep(ms);
             paragraph.classList.remove('disappear');
-            if (i == 800) {
-                body.classList.replace('oldBack', 'newBack');
+            if (i == 600) {
+                backyBack.classList.replace('oldBack', 'newBack');
             }
-            if (ms != 7) ms = ms - 7;
+            if (ms != 5) ms = ms - 5;
         }
 
         body.addEventListener('transitionend', async function() {
@@ -270,7 +279,13 @@ range.addEventListener('input', async function() {
         await sleep(3000);
         form.classList.add('hidden');
         await blinkElementToShow(logo, 3000, 3000);
+
+        body.classList.add('flexColumn');
         body.classList.remove('justy', 'no-scroll');
+
+
+        backyBack.classList.replace('newBack', 'invisBack');
+
         displayElement(container);
         displayElement(timer);
         displayElement(albumTitle);
@@ -280,11 +295,10 @@ range.addEventListener('input', async function() {
         displayElement(monrausText);
         displayElement(TEST);
     }
-})
+
 
 songsTitles.forEach((title) => {
     title.addEventListener('click', () => {
-        console.log(title.dataset.id);
         songDescription.innerHTML = descriptions[title.dataset.id].description;
     })
 })
