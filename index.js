@@ -6,10 +6,11 @@ const songs = [
     {id: 5, title: 'Измена'},
     {id: 6, title: 'Богема'},
     {id: 7, title: 'Окнами'},
-    {id: 8, title: 'Моя муза'},
-    {id: 9, title: 'Градусы'},
-    {id: 10, title: 'Сто таблеток'},
-    {id: 11, title: 'Молодым'}
+    {id: 8, title: 'Девочка Петербурга'},
+    {id: 9, title: 'Моя муза'},
+    {id: 10, title: 'Градусы'},
+    {id: 11, title: 'Сто таблеток'},
+    {id: 12, title: 'Молодым'}
 ];
 
 const descriptions = [
@@ -218,7 +219,6 @@ async function blinkElementToHide(element, timeInDiffState, elementsTransitionTi
     await sleep(1000);
     if (exist == true) {
         element.addEventListener('transitionend', async function () {
-            console.log('hidden');
             element.classList.add('hidden');
         })
     }
@@ -246,10 +246,9 @@ async function hideElement(element, ms) {
 
 range.addEventListener('input', async function() {
     let value = range.value;
-    console.log(value);
 
     if (value != 0 && value != 100) {
-        showTitle((Math.ceil(value / 9)) - 1);
+        showTitle((Math.ceil(value / 8.5)) - 1);
     }
     else if (range.value == 100) {
         changeToFinalScreen();
