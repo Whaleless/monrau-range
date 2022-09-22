@@ -502,8 +502,8 @@ input[type=range]::-webkit-slider-runnable-track {
     }
 
     .networks-last {
-        margin-left: -500px;
-        margin-top: 25px;
+        margin-left: 415px;
+        margin-top: -15px;
         transform: scale(1.5);
     }
 
