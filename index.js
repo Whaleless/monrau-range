@@ -81,7 +81,7 @@ const mobileSizes = [
     {id: 3, mobileSize: '72px'}
 ]
 
-let releaseDate = new Date('2022-09-23T00:00:00');
+let releaseDate = new Date(Date.UTC(2022, 8, 22, 21, 0, 0));
 
 let body = document.querySelector('.body');
 const launchScreen = document.querySelector('.launch-screen');
