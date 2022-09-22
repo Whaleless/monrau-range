@@ -107,6 +107,8 @@ const songsTitles = document.querySelectorAll('.song-name');
 const songDescription = document.querySelector('.song-description');
 const backyBack = document.querySelector('.backyBack');
 const clearLogo = document.querySelector('.clear-logo');
+const networksFirst = document.querySelector('.networks-first');
+const networksLast = document.querySelector('.networks-last');
 
 let backAudio = document.querySelector('.audio');
 
@@ -177,8 +179,8 @@ function totalSeparateDate () {
             }
         ]
     } else if (allSeconds <= 0) {
-        clearInterval(timerUpdate);
         timerEnds();
+        clearInterval(timerUpdate);
     }
 }
 
@@ -322,6 +324,7 @@ range.addEventListener('input', async function() {
         displayElement(albumTitle);
         displayElement(lowerPart);
         displayElement(networkBlock);
+        if(networksFirst) displayElement(networksFirst);
         displayElement(tracklist);
         displayElement(monrausText);
         displayElement(clearLogo);
@@ -346,8 +349,9 @@ songsTitles.forEach((title) => {
 })
 
 async function timerEnds() {
-    hideElement(timer);
+    timer.classList.contains('hidden') ? timer.remove() : hideElement(timer);
     await blinkElementToHide(albumTitle, 3000, 3000, false);
-    albumDescription.innerHTML = 'Уже на всех площадках';
-    await displayElement(albumDescription);
+    displayElement(albumDescription);
+    networksFirst.classList.contains('disappear') ? networksFirst.remove() : hideElement(networksFirst);
+    displayElement(networksLast);
 }

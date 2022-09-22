@@ -20,7 +20,6 @@
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
         ym(90497830, "init", {
             clickmap:true,
             trackLinks:true,
@@ -29,7 +28,8 @@
             ecommerce:"dataLayer"
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/90497830" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <noscript><div><img src="https://mc.yandex.ru/watch/90497830" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css" type="text/css">
@@ -60,7 +60,22 @@
 </section>
 <div class="container disappear hidden">
     <div class="album-title disappear hidden">Тишина, сделай громче</div>
-    <div class="album-description disappear hidden"></div>
+    <div class="album-description disappear hidden">
+        <section class="networks-top">
+            <a href="https://vk.cc/cgOflL" target="_blank">
+                <img src="icons/network/VK.png"  width="200px" height="60px">
+            </a>
+            <a href="https://music.apple.com/ru/album/тишина-сделай-громче/1644956690?l=ru&ls=1&app=music" target="_blank">
+                <img src="icons/network/apple.png" width="200px" height="60px">
+            </a>
+            <a href="https://music.yandex.ru/album/23533801" target="_blank">
+                <img src="icons/network/yandex.png" width="200px" height="60px">
+            </a>
+            <a href="https://open.spotify.com/artist/3eXh4Epdv50cI7QkmNmMPb" target="_blank">
+                <img src="icons/network/spot.png" width="200px" height="60px">
+            </a>
+        </section>
+    </div>
     <div class="timer-box disappear hidden">
         <div class="timer">
             <div class="timers-part">
@@ -117,18 +132,24 @@
     </div>
 </section>
 <section class="networks disappear hidden">
-    <a href="https://vk.com/artist/monrau" target="_blank">
-        <img src="icons/network/VK.png"  width="200px" height="60px">
-    </a>
-    <a href="https://music.apple.com/md/artist/monrau/1595600259" target="_blank">
-        <img src="icons/network/apple.png" width="200px" height="60px">
-    </a>
-    <a href="https://music.yandex.ru/artist/13941500" target="_blank">
-        <img src="icons/network/yandex.png" width="200px" height="60px">
-    </a>
-    <a href="https://open.spotify.com/artist/3eXh4Epdv50cI7QkmNmMPb" target="_blank">
-        <img src="icons/network/spot.png" width="200px" height="60px">
-    </a>
+    <section class="networks-first hidden disappear">
+        <a href="https://vk.com/artist/monrau" target="_blank">
+            <img src="icons/network/VK.png"  width="200px" height="60px">
+        </a>
+        <a href="https://music.apple.com/md/artist/monrau/1595600259" target="_blank">
+            <img src="icons/network/apple.png" width="200px" height="60px">
+        </a>
+        <a href="https://music.yandex.ru/artist/13941500" target="_blank">
+            <img src="icons/network/yandex.png" width="200px" height="60px">
+        </a>
+        <a href="https://open.spotify.com/artist/3eXh4Epdv50cI7QkmNmMPb" target="_blank">
+            <img src="icons/network/spot.png" width="200px" height="60px">
+        </a>
+    </section>
+    <section class="networks-last disappear hidden">
+        <a href="https://vk.com/monrau"><img src="icons/vk.png"></a>
+        <a href="https://t.me/monraumusic"><img src="icons/tg.png"></a>
+    </section>
 </section>
     <form class="form disappear hidden">
         <label for="album-stage" class="hidden">
